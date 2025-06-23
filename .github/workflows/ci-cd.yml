@@ -3,7 +3,7 @@ name : CI/CD Backend
 on:
   push:
     branches:
-      -main
+      - main
 
 jobs:
   build:
@@ -19,11 +19,11 @@ jobs:
           username: ${{secrets.DOCKER_USERNAME}}
           password: ${{secrets.DOCKER_PASSWORD}}
   
-      - name: Bild image
+      - name: Build image
         run: docker build -t ${{secrets.DOCKER_USERNAME}}/typhon-docker-backend:latest . 
 
       - name: Push images 
-        run : docker push ${{secrets.DOCKER_USERNAME}}/typhon-docker-backend:latest
+        run: docker push ${{secrets.DOCKER_USERNAME}}/typhon-docker-backend:latest
 
       - name: Trigger Local Deploy
         run: curl -X POST  ${{secrets.DEPLOY_WEBHOOK_URL}}
